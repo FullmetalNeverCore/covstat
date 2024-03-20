@@ -13,19 +13,10 @@ import dayjs, {Dayjs} from 'dayjs';
 import { MenuItem, FormControl, Select, InputLabel } from '@mui/material';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {CovidData} from './comp/iface';
-import {findMaxDate,findMinDate} from './comp/misc';
+import {findMaxDate,findMinDate,columns} from './comp/misc';
 import OptimizedLineChart from './comp/LineChart';
 
 
-const columns = [
-  { field: 'dateRep', headerName: 'Дата', width: 150 },
-  { field: 'countriesAndTerritories', headerName: 'Страна', width: 150 },
-  { field: 'cases', headerName: 'Количество случаев', type: 'number', width: 180 },
-  { field: 'deaths', headerName: 'Количество смертей', type: 'number', width: 180 },
-  { field: 'countryterritoryCode', headerName: 'Код страны', width: 150 },
-  { field: 'popData2019', headerName: 'Население', type: 'number', width: 130 },
-  { field: 'continentExp', headerName: 'Континент', width: 150 }
-];
 
 function App() {
   const [data, setData] = useState<CovidData[]>([]);
@@ -132,7 +123,7 @@ function App() {
             label="Start Date"
             value={startDate}
             onChange={(newValue: dayjs.Dayjs | null) => {
-                setEndDate(newValue);
+                setStartDate(newValue);
                 setFiltersApplied(true);
             }}
             minDate={memoizedMinDate || undefined}
